@@ -20,4 +20,4 @@ jobs:
         run: terraform -chdir=terraform validate
 
       - name: Apply changes
-        run: terraform -chdir=terraform apply
+        run: terraform -chdir=terraform apply -auto-approve
