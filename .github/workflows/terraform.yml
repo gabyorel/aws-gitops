@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Init
-        run: terraform init
+        run: terraform -chdir=terraform init
 
       - name: Validate configuration
-        run: terraform validate
+        run: terraform -chdir=terraform validate
 
       - name: Apply changes
-        run: terraform apply
+        run: terraform -chdir=terraform apply
