@@ -1,0 +1,23 @@
+name: terraform
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform:
+    runs-on: aws
+    steps:
+      - name: Checkout code from the main branch
+        uses: actions/checkout@v2
+
+      - name: Init
+        run: terraform init
+
+      - name: Validate configuration
+        run: terraform validate
+
+      - name: Apply changes
+        run: terraform apply
