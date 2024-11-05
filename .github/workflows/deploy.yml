@@ -1,0 +1,26 @@
+name: deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: aws
+    steps:
+      - name: Checkout code from the main branch
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Region
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-east-1
+
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: main
+          template: cloudformation/main.yaml
+          no-fail-on-empty-changeset: "0"
