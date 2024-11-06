@@ -33,4 +33,4 @@ jobs:
       - name: Apply changes
         if: (github.ref == 'refs/heads/develop' && matrix.environment != 'prod') ||
             (github.ref == 'refs/heads/main' && matrix.environment == 'prod')
-        run: terraform -chdir=terraform apply -auto-approve --var-file=${{ matrix.tfvar_file }}
+        run: terraform -chdir=terraform apply -auto-approve --var-file=${{ matrix.tfvar_file }} -var=environment=${{ matrix.environment }}

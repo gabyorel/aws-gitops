@@ -16,6 +16,13 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
+
+  default_tags {
+    tags = {
+      Environment = var.environment
+      Provisioner = "Terraform"
+    }
+  }
 }
 
 # resource "aws_s3_bucket" "terraform-state-backend" {
