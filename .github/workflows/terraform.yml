@@ -12,16 +12,16 @@ jobs:
         environment: [dev, staging, prod]
         include:
           - environment: dev
-            tfvar_file: "dev/dev.tfvars"
-            backend_file: "dev/s3.tfbackend"
+            tfvar_file: "dev/.tfvars"
+            backend_file: "dev/.tfbackend"
 
           - environment: staging
-            tfvar_file: "staging/staging.tfvars"
-            backend_file: "staging/s3.tfbackend"
+            tfvar_file: "staging/.tfvars"
+            backend_file: "staging/.tfbackend"
 
           - environment: prod
-            tfvar_file: "prod/prod.tfvars"
-            backend_file: "prod/s3.tfbackend"
+            tfvar_file: "prod/.tfvars"
+            backend_file: "prod/.tfbackend"
 
     steps:
       - name: Checkout code
