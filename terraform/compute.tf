@@ -29,3 +29,14 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }
+
+resource "aws_instance" "web" {
+  ami                    = "ami-0866a3c8686eaeeba"
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.web.id]
+  user_data              = file("scripts/nginx.sh")
+
+  tags = {
+    Name : "Web"
+  }
+}
