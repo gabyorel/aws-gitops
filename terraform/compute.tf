@@ -32,7 +32,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
 
 resource "aws_instance" "web" {
   ami                    = "ami-0866a3c8686eaeeba"
-  instance_type          = "t2.micro"
+  instance_type          = var.instance_type
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.web.id]
   user_data              = file("scripts/nginx.sh")
