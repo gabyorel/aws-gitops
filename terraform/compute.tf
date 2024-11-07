@@ -4,7 +4,7 @@ resource "aws_security_group" "web" {
   vpc_id      = aws_vpc.main.id
 
   tags = {
-    Name = "web-sg"
+    Name = "web-sg-${var.environment}"
   }
 }
 
@@ -38,6 +38,6 @@ resource "aws_instance" "web" {
   user_data              = file("scripts/nginx.sh")
 
   tags = {
-    Name : "Web"
+    Name : "webserver-${var.environment}"
   }
 }
