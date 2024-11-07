@@ -30,14 +30,14 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
   ip_protocol       = "-1"
 }
 
-resource "aws_instance" "web" {
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-  subnet_id              = aws_subnet.public.id
-  vpc_security_group_ids = [aws_security_group.web.id]
-  user_data              = file("scripts/nginx.sh")
-
-  tags = {
-    Name : "webserver-${var.environment}"
-  }
+module "webserver1" {
+  source            = "./instance"
+  ami               = data.aws_ami.ubuntu.id
+  instance_name     = "webserver1"
+  instance_type     = var.instance_type
+  subnet_id         = aws_subnet.public.id
+  security_group_id = aws_security_group.web.id
+  repo_url          = "https://fhoubart@bitbucket.org/fhoubart/testphaser_aws.git"
+  html_folder       = "public_html"
+  environment       = var.environment
 }
