@@ -24,11 +24,3 @@ provider "aws" {
     }
   }
 }
-
-# resource "aws_s3_bucket" "terraform-state-backend" {
-#   bucket = "gitops-tf-state-backend"
-
-#   tags = {
-#     Name = "Terraform State Backend"
-#   }
-# }
