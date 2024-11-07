@@ -1,0 +1,6 @@
+#!/bin/sh
+apt-get update
+apt-get install nginx git -y
+sudo rm -rf /var/www/html/*
+sudo git clone ${repo_url} /var/www/html/
+sudo mv /var/www/html/${html_folder}/* /var/www/html/
