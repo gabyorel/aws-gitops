@@ -1,8 +1,13 @@
-variable instance_type {
+variable "instance_type" {
   type        = string
   description = "EC2 Instance Type"
 }
 
-variable environment {
+variable "global" {
+  type        = bool
+  description = "Controls whether the resource should be created globally"
+}
+
+variable "environment" {
   type = string
 }

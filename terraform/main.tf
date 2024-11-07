@@ -26,7 +26,8 @@ provider "aws" {
 }
 
 resource "aws_ecr_repository" "main" {
-  name                 = "${var.environment}-repo"
+  count                = var.global ? 1 : 0
+  name                 = "main"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
