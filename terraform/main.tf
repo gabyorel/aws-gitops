@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.16"
     }
+    docker = {
+      source = "docker/docker"
+      version = "~> 0.3"
+    }
   }
 
   backend "s3" {
@@ -25,12 +29,11 @@ provider "aws" {
   }
 }
 
-resource "aws_ecr_repository" "main" {
-  count                = var.global ? 1 : 0
-  name                 = "main"
-  image_tag_mutability = "MUTABLE"
+provider "docker" {}
 
-  image_scanning_configuration {
-    scan_on_push = false
-  }
+resource "docker_hub_repository" "aws-lab-repo" {
+  count     = var.global ? 1 : 0
+  namespace = var.namespace
+  name      = "aws-lab-repo"
+  private   = true
 }
