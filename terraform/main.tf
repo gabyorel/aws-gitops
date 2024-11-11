@@ -31,9 +31,9 @@ provider "aws" {
 
 provider "docker" {}
 
-resource "docker_hub_repository" "aws-lab-repo" {
+resource "docker_hub_repository" "dynamodb-tictactoe-app" {
   count     = var.global ? 1 : 0
   namespace = var.namespace
-  name      = "aws-lab-repo"
+  name      = "dynamodb-tictactoe-app"
   private   = true
 }
